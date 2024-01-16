@@ -30,14 +30,12 @@ public class UserAuthServiceimpl implements UserAuthService {
         try {
             User user = userRepo.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
             if (user != null) {
-                // Generate JWT token
+  
                 return jwtUtil.generateToken(user.getEmail());
             }
             return null;
         } catch (Exception e) {
-            // Log the exception for debugging purposes
-            e.printStackTrace();
-            // Return null to indicate login failure due to an exception
+            
             return null;
         }
     }

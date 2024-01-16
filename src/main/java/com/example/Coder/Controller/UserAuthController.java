@@ -43,9 +43,7 @@ public class UserAuthController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
             }
         } catch (Exception e) {
-            // Log the exception for debugging purposes
-            e.printStackTrace();
-            // Return a generic error message to the client
+            
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An internal server error occurred");
         }
     }
