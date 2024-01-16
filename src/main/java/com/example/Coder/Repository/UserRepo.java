@@ -8,8 +8,6 @@ import com.example.Coder.Entity.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    User findByemail(String email);
-
     User findByEmailAndPassword(String email, String password);
 
 
