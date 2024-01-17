@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Coder.Auhtentication.JwtUtil;
-import com.example.Coder.DTO.UserDto;
 import com.example.Coder.Entity.User;
 import com.example.Coder.Repository.UserRepo;
+import com.example.Coder.Request.UserRequest;
 import com.example.Coder.Service.UserAuthService;
 
 @Service
@@ -26,7 +26,7 @@ public class UserAuthServiceimpl implements UserAuthService {
     }
 
     @Override
-    public String loginUser(UserDto userDto) {
+    public String loginUser(UserRequest userDto) {
         try {
             User user = userRepo.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
             if (user != null) {

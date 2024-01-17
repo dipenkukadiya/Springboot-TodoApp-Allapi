@@ -1,13 +1,11 @@
 package com.example.Coder.Service;
 
-// import java.util.List;
-
-import com.example.Coder.DTO.UserDto;
 import com.example.Coder.Entity.User;
+import com.example.Coder.Request.UserRequest;
 
 public interface UserAuthService {
     void addRegisterUser(User user);
-    String loginUser(UserDto userdto);
+    String loginUser(UserRequest userdto);
     // User getUserByemail(String email);
     // List<User> getUsers();
     

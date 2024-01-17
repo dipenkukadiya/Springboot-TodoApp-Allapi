@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Coder.DTO.UserDto;
 import com.example.Coder.Entity.User;
+import com.example.Coder.Request.UserRequest;
 import com.example.Coder.Service.UserAuthService;
 
 @RestController
@@ -31,7 +31,7 @@ public class UserAuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<String> loginUser(@RequestBody UserRequest userDto) {
         // String token = userAuthService.loginUser(userDto);
         try {
             String token = userAuthService.loginUser(userDto);

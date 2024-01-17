@@ -5,16 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Coder.Entity.Board;
 import com.example.Coder.Entity.Workspace;
+import com.example.Coder.Repository.BoardRepo;
 import com.example.Coder.Repository.WorkspaceRepo;
+import com.example.Coder.Request.BoardRequest;
+import com.example.Coder.Request.WorkspaceRequest;
 import com.example.Coder.Service.WorkspaceService;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class WorkspaceServiceImpl implements WorkspaceService {
+
     @Autowired
-    WorkspaceRepo workspaceRepo;
+    private WorkspaceRepo  workspaceRepo;
+
+    @Autowired
+    private BoardRepo boardRepo;
 
     @Override
     public List<Workspace> getAllWorkspaces() {
@@ -22,7 +28,11 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
-    public void addWorkspace(Workspace workspace) {
+    public void addWorkspace(WorkspaceRequest workspaceRequest) {
+        Workspace workspace = new Workspace();
+        workspace.setTitle(workspaceRequest.getTitle());
+        workspace.setDescription(workspaceRequest.getDescription());
+        workspace.setIsPrivate(workspaceRequest.getIsPrivate());
         workspaceRepo.save(workspace);
     }
 
@@ -32,31 +42,106 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
-    public void updateWorkspace(Workspace workspace, Long workspaceId) {
-        Workspace existingWorkspace = workspaceRepo.findById(workspaceId)
-                .orElseThrow(() -> new EntityNotFoundException("Workspace not found with id: " + workspaceId));
-
-        existingWorkspace.setTitle(workspace.getTitle());
-        existingWorkspace.setDescription(workspace.getDescription());
-        existingWorkspace.setIsPrivate(workspace.getIsPrivate());
-
-        workspaceRepo.save(existingWorkspace);
-
+    public void updateWorkspace(WorkspaceRequest workspaceRequest, Long workspace_id) {
+        Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
+        if (workspace != null) {
+            workspace.setTitle(workspaceRequest.getTitle());
+            workspace.setDescription(workspaceRequest.getDescription());
+            workspace.setIsPrivate(workspaceRequest.getIsPrivate());
+            workspaceRepo.save(workspace);
+        }
     }
 
     @Override
-    public void removeWorkspace(Long workspaceId) {
-        workspaceRepo.deleteById(workspaceId);
+    public void removeWorkspace(Long workspace_id) {
+        workspaceRepo.deleteById(workspace_id);
     }
 
     @Override
     public void toggleIsprivacy(Long workspace_id) {
-        Workspace workspace = workspaceRepo.findById(workspace_id)
-                .orElseThrow(() -> new EntityNotFoundException("Workspace not found with id: " + workspace_id));
-
-        workspace.setIsPrivate(!workspace.getIsPrivate());
-
-        workspaceRepo.save(workspace);
+        Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
+        if (workspace != null) {
+            workspace.setIsPrivate(!workspace.getIsPrivate());
+            workspaceRepo.save(workspace);
+        }
     }
 
+    @Override
+    public List<Board> getAllBoards(Long workspace_id) {
+        Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
+        if (workspace != null) {
+            return workspace.getBoards();
+        }
+        return null;
+    }
+
+    @Override
+    public Board getBoard(Long workspace_id, Long board_id) {
+        Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
+        if (workspace != null) {
+            return boardRepo.findByIdAndWorkspace(board_id, workspace);
+        }
+        return null;
+    }
+
+    @Override
+    public void addBoard(Long workspaceId, BoardRequest boardRequest) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
+        if (workspace != null) {
+            Board board = new Board();
+            board.setTitle(boardRequest.getTitle());
+            board.setDescription(boardRequest.getDescription());
+            board.setArchive(boardRequest.getArchive());
+            board.setFavorite(boardRequest.getFavorite());
+            board.setWorkspace(workspace);
+            boardRepo.save(board);
+        }
+    }
+
+    @Override
+    public void updateBoard(Long workspaceId, Long boardId, BoardRequest boardRequest) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
+        if (workspace != null) {
+            Board board = boardRepo.findByIdAndWorkspace(boardId, workspace);
+            if (board != null) {
+                board.setTitle(boardRequest.getTitle());
+                board.setDescription(boardRequest.getDescription());
+                board.setArchive(boardRequest.getArchive());
+                board.setFavorite(boardRequest.getFavorite());
+                boardRepo.save(board);
+            }
+        }
+    }
+
+    @Override
+    public void removeBoard(Long workspaceId, Long boardId) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
+        if (workspace != null) {
+            boardRepo.deleteByIdAndWorkspace(boardId, workspace);
+        }
+    }
+
+    @Override
+    public void toggleBoardIsArchive(Long workspaceId, Long boardId) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
+        if (workspace != null) {
+            Board board = boardRepo.findByIdAndWorkspace(boardId, workspace);
+            if (board != null) {
+                board.setArchive(!board.getArchive());
+                boardRepo.save(board);
+            }
+        }
+    }
+
+    @Override
+    public void toggleBoardIsFavorite(Long workspaceId, Long boardId) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
+        if (workspace != null) {
+            Board board = boardRepo.findByIdAndWorkspace(boardId, workspace);
+            if (board != null) {
+                board.setFavorite(!board.getFavorite());
+                boardRepo.save(board);
+            }
+        }
+    }
 }

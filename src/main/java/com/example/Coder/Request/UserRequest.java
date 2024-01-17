@@ -1,14 +1,14 @@
-package com.example.Coder.DTO;
+package com.example.Coder.Request;
 
-public class UserDto {
+public class UserRequest {
 
     private String email;
     private String password;
 
-    public UserDto() {
+    public UserRequest() {
     }
 
-    public UserDto(String email, String password) {
+    public UserRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }
