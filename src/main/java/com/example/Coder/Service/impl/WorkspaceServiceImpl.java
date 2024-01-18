@@ -1,5 +1,6 @@
 package com.example.Coder.Service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.example.Coder.Service.WorkspaceService;
 public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Autowired
-    private WorkspaceRepo  workspaceRepo;
+    private WorkspaceRepo workspaceRepo;
 
     @Autowired
     private BoardRepo boardRepo;
@@ -38,6 +39,8 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Override
     public Workspace getWorkspace(Long workspace_id) {
+        System.out.println("hello world ,,,,,,,,,,,,,,,,,,,,");
+
         return workspaceRepo.findById(workspace_id).get();
     }
 
@@ -68,11 +71,12 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Override
     public List<Board> getAllBoards(Long workspace_id) {
+        
         Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
         if (workspace != null) {
             return workspace.getBoards();
         }
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -93,8 +97,11 @@ public class WorkspaceServiceImpl implements WorkspaceService {
             board.setDescription(boardRequest.getDescription());
             board.setArchive(boardRequest.getArchive());
             board.setFavorite(boardRequest.getFavorite());
+
             board.setWorkspace(workspace);
-            boardRepo.save(board);
+            workspace.getBoards().add(board);
+
+            workspaceRepo.save(workspace);
         }
     }
 
@@ -117,7 +124,11 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     public void removeBoard(Long workspaceId, Long boardId) {
         Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
         if (workspace != null) {
-            boardRepo.deleteByIdAndWorkspace(boardId, workspace);
+            Board board = boardRepo.findById(boardId).orElse(null);
+            if (board != null) {
+                workspace.getBoards().remove(board);
+                workspaceRepo.save(workspace);
+            }
         }
     }
 
