@@ -6,6 +6,7 @@ import com.example.Coder.Request.UserRequest;
 public interface UserAuthService {
     void addRegisterUser(User user);
     String loginUser(UserRequest userdto);
+    User getByToken(String token);
     // User getUserByemail(String email);
     // List<User> getUsers();
     

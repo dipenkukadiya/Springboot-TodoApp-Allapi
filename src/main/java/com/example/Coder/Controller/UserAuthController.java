@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 // import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Coder.Entity.User;
@@ -43,15 +46,39 @@ public class UserAuthController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
             }
         } catch (Exception e) {
-            
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An internal server error occurred");
         }
     }
+    // ########## GET ALL USER #############
 
     // @GetMapping("/getalluser")
     // public List<User> getUsers() {
     // return userAuthService.getUsers();
     // }
+    // ########## GET ALL USER BY EMAIL #############
 
-    
+    // @GetMapping("/{email}")
+    // public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    // User user = userAuthService.getUserByemail(email);
+
+    // if (user != null) {
+    // return new ResponseEntity<>(user, HttpStatus.OK);
+    // } else {
+    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // }
+    // }
+    @GetMapping("/get-by-token")
+    public ResponseEntity<User> getUserByToken(@RequestParam String token) {
+        User user = userAuthService.getByToken(token);
+
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
 }

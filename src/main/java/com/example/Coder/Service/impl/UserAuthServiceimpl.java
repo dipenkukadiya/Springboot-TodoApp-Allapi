@@ -39,6 +39,14 @@ public class UserAuthServiceimpl implements UserAuthService {
             return null;
         }
     }
+    @Override
+    public User getByToken(String token) {
+        String email = jwtUtil.getEmailFromToken(token);
+        if (email != null) {
+            return userRepo.findByemail(email);
+        }
+        return null;
+    }
 
     // @Override
     // public User getUserByemail(String email) {
