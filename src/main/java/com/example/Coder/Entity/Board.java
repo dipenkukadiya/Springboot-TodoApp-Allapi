@@ -13,7 +13,7 @@ import lombok.Data;
 public class Board{
     @Id
     @Column(name = "board_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "board_title")

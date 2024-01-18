@@ -1,21 +1,26 @@
-package com.example.Coder.Request;
 
+package com.example.Coder.DTO;
 
-
-
-
-public class BoardRequest {
+public class BoardDTO {
+    private Long id;
     private String title;
     private String description;
-    private Boolean favorite;
-    private Boolean archive;
-    public BoardRequest() {
+    private boolean favorite;
+    private boolean archive;
+    public BoardDTO() {
     }
-    public BoardRequest(String title, String description, Boolean favorite, Boolean archive) {
+    public BoardDTO(Long id, String title, String description, boolean favorite, boolean archive) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.favorite = favorite;
         this.archive = archive;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
     public String getTitle() {
         return title;
@@ -29,19 +34,20 @@ public class BoardRequest {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Boolean getFavorite() {
+    public boolean isFavorite() {
         return favorite;
     }
-    public void setFavorite(Boolean favorite) {
+    public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
-    public Boolean getArchive() {
+    public boolean isArchive() {
         return archive;
     }
-    public void setArchive(Boolean archive) {
+    public void setArchive(boolean archive) {
         this.archive = archive;
     }
     
     
 
+    
 }
