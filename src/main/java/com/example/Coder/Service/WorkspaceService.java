@@ -10,8 +10,6 @@ import com.example.Coder.Request.WorkspaceRequest;
 
 public interface WorkspaceService {
 
-       
-
        List<WorkspaceDTO> getAllWorkspaces();
 
        void addWorkspace(WorkspaceRequest workspaceRequest);
@@ -24,8 +22,4 @@ public interface WorkspaceService {
 
        void toggleIsprivacy(Long workspace_id);
 
-}  
-
-
-       
-
+}

@@ -30,15 +30,16 @@ public class UserAuthServiceimpl implements UserAuthService {
         try {
             User user = userRepo.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
             if (user != null) {
-  
+
                 return jwtUtil.generateToken(user.getEmail());
             }
             return null;
         } catch (Exception e) {
-            
+
             return null;
         }
     }
+
     @Override
     public User getByToken(String token) {
         String email = jwtUtil.getEmailFromToken(token);

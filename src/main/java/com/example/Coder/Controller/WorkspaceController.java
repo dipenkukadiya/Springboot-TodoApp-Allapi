@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.Coder.DTO.WorkspaceDTO;
-// import com.example.Coder.Entity.Board;
-// import com.example.Coder.Entity.Workspace;
-// import com.example.Coder.Request.BoardRequest;
 import com.example.Coder.Request.WorkspaceRequest;
 import com.example.Coder.Service.WorkspaceService;
 

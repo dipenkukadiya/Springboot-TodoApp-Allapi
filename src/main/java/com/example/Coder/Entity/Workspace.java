@@ -29,7 +29,7 @@ public class Workspace {
 
     @Column(name = "is_private")
     private Boolean isPrivate;
-    
+
     @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Board> boards = new ArrayList<>();
 

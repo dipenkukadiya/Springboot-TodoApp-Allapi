@@ -39,7 +39,8 @@ public class BoardController {
     }
 
     @PutMapping("/{workspaceId}/boards/{boardId}")
-    public ResponseEntity<Void> updateBoard(@PathVariable Long workspaceId, @PathVariable Long boardId, @RequestBody BoardRequest boardRequest) {
+    public ResponseEntity<Void> updateBoard(@PathVariable Long workspaceId, @PathVariable Long boardId,
+            @RequestBody BoardRequest boardRequest) {
         boardService.updateBoard(workspaceId, boardId, boardRequest);
         return ResponseEntity.ok().build();
     }
