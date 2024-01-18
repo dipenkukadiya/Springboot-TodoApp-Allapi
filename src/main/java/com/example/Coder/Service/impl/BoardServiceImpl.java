@@ -74,7 +74,7 @@ public class BoardServiceImpl implements BoardService {
     public void removeBoard(Long workspaceId, Long boardId) {
         Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
         if (workspace != null) {
-            boardRepo.deleteByIdAndWorkspace(boardId, workspace);
+            boardRepo.deleteById(boardId);
         }
     }
 
@@ -101,13 +101,13 @@ public class BoardServiceImpl implements BoardService {
             }
         }
     }
-     private List<BoardDTO> convertBoardsToDTOs(List<Board> boards) {
+
+    private List<BoardDTO> convertBoardsToDTOs(List<Board> boards) {
         return boards.stream()
                 .map(this::convertBoardToDTO)
                 .collect(Collectors.toList());
     }
 
-   
     private BoardDTO convertBoardToDTO(Board board) {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setId(board.getId());

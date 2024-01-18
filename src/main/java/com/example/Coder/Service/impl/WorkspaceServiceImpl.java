@@ -2,10 +2,12 @@ package com.example.Coder.Service.impl;
 
 // import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Coder.DTO.WorkspaceDTO;
 // import com.example.Coder.Entity.Board;
 import com.example.Coder.Entity.Workspace;
 // import com.example.Coder.Repository.BoardRepo;
@@ -20,14 +22,24 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     @Autowired
     private WorkspaceRepo workspaceRepo;
 
-    // @Autowired
-    // private BoardRepo boardRepo;
+ 
 
-    @Override
-    public List<Workspace> getAllWorkspaces() {
-        return workspaceRepo.findAll();
+     @Override
+    public List<WorkspaceDTO> getAllWorkspaces() {
+        List<Workspace> workspaces = workspaceRepo.findAll();
+        return workspaces.stream()
+                .map(this::convertWorkspaceToDTO)
+                .collect(Collectors.toList());
     }
 
+    @Override
+    public WorkspaceDTO getWorkspace(Long workspaceId) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
+        if (workspace != null) {
+            return convertWorkspaceToDTO(workspace);
+        }
+        return null;
+    }
     @Override
     public void addWorkspace(WorkspaceRequest workspaceRequest) {
         Workspace workspace = new Workspace();
@@ -37,11 +49,6 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         workspaceRepo.save(workspace);
     }
 
-    @Override
-    public Workspace getWorkspace(Long workspace_id) {
-
-        return workspaceRepo.findById(workspace_id).get();
-    }
 
     @Override
     public void updateWorkspace(WorkspaceRequest workspaceRequest, Long workspace_id) {
@@ -66,6 +73,16 @@ public class WorkspaceServiceImpl implements WorkspaceService {
             workspace.setIsPrivate(!workspace.getIsPrivate());
             workspaceRepo.save(workspace);
         }
+    }
+    private WorkspaceDTO convertWorkspaceToDTO(Workspace workspace) {
+        WorkspaceDTO workspaceDTO = new WorkspaceDTO();
+        workspaceDTO.setId(workspace.getId());
+        workspaceDTO.setTitle(workspace.getTitle());
+        workspaceDTO.setDescription(workspace.getDescription());
+        workspaceDTO.setPrivate(workspace.getIsPrivate());
+        
+
+        return workspaceDTO;
     }
 }
 
