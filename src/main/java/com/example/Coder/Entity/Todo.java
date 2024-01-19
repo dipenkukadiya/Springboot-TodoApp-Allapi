@@ -1,68 +1,62 @@
-// package com.example.Coder.Entity;
-// import java.sql.Date;
+package com.example.Coder.Entity;
 
-// import org.springframework.data.annotation.CreatedDate;
-// import org.springframework.data.annotation.LastModifiedDate;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import java.util.Date;
 
+@Data
+@Entity
+public class Todo {
+    @Id
+    @Column(name = "todo_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-// import jakarta.persistence.Column;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.OneToOne;
-// import lombok.Data;
+    @Column(name = "todo_name")
+    private String name;
 
-// @Data
-// @Entity
-// public class Todo {
-//     @Id
-//     @Column(name = "todo_id")
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+    @Column(name = "todo_description")
+    private String description;
 
-//     @Column(name = "todo_name")
-//     private String name;
+    @Column(name = "todo_key")
+    private String todoKey;
 
-//     @Column(name = "todo_description")
-//     private String description;
+    @Column(name = "is_archived")
+    private Boolean archived;
 
-//     @Column(name = "todo_key")
-//     private String TodoKey;
+    @ManyToOne
+    @JoinColumn(name = "card_id")
+    private Card card;
 
-//     @Column(name = "is_archived")
-//     private Boolean archived;
+    @OneToOne
+    @JoinColumn(name = "created_by_id") // Change to a different name, e.g., created_by_id
+    private User createdBy;
 
-//     @ManyToOne
-//     @JoinColumn(name = "card_id")
-//     private Card card;
+    @ManyToOne
+    @JoinColumn(name = "assigned_to_id") // Change to a different name, e.g., assigned_to_id
+    private User assignedTo;
 
-//     @OneToOne
-//     @JoinColumn(name = "user_id")
-//     private User CratedBy;
+    @Column(name = "assigned_date")
+    private String assignedDate;
 
-//     @ManyToOne
-//     @JoinColumn(name ="user_id")
-//     private User AssignTo;
-    
-//     @Column(name = "assigned_date")
-//     private String assignedDate;
+    @Column(name = "estimated_hours")
+    private String estimatedHours;
 
-//     @Column(name = "estimated_hours")
-//     private String estimatedHours;
+    @Column(name = "start_date")
+    private String startDate;
 
-//     @Column(name = "start_date")
-//     private String startDate;
+    @Column(name = "end_date")
+    private String endDate;
 
-//     @Column(name = "end_date")
-//     private String endDate;
+    @CreatedDate
+    @Column(name = "created_date")
+    private Date createdDate;
 
-//     @CreatedDate @Column(name = "created_date")
-//     private Date createdDate;
-    
-//     @LastModifiedDate @Column(name = "updated_date")
-//     private Date updatedDate;
-// }
+    @LastModifiedDate
+    @Column(name = "updated_date")
+    private Date updatedDate;
+}
+// 
