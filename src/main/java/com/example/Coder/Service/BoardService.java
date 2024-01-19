@@ -17,8 +17,6 @@ public interface BoardService {
 
     void removeBoard(Long workspace_id, Long board_id);
 
-    void toggleBoardIsArchive(Long workspace_id, Long board_id);
-
     void toggleBoardIsFavorite(Long workspace_id, Long board_id);
 
 }

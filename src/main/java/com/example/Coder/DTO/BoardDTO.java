@@ -6,17 +6,17 @@ public class BoardDTO {
     private String title;
     private String description;
     private boolean favorite;
-    private boolean archive;
+  
 
     public BoardDTO() {
     }
 
-    public BoardDTO(Long id, String title, String description, boolean favorite, boolean archive) {
+    public BoardDTO(Long id, String title, String description, boolean favorite) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.favorite = favorite;
-        this.archive = archive;
+       
     }
 
     public Long getId() {
@@ -51,12 +51,5 @@ public class BoardDTO {
         this.favorite = favorite;
     }
 
-    public boolean isArchive() {
-        return archive;
-    }
-
-    public void setArchive(boolean archive) {
-        this.archive = archive;
-    }
-
+    
 }

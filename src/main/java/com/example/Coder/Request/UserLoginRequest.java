@@ -1,14 +1,14 @@
 package com.example.Coder.Request;
 
-public class UserRequest {
+public class UserLoginRequest {
 
     private String email;
     private String password;
 
-    public UserRequest() {
+    public UserLoginRequest() {
     }
 
-    public UserRequest(String email, String password) {
+    public UserLoginRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }

@@ -47,7 +47,6 @@ public class BoardServiceImpl implements BoardService {
             Board board = new Board();
             board.setTitle(boardRequest.getTitle());
             board.setDescription(boardRequest.getDescription());
-            board.setArchive(boardRequest.getArchive());
             board.setFavorite(boardRequest.getFavorite());
             board.setWorkspace(workspace);
             boardRepo.save(board);
@@ -62,7 +61,6 @@ public class BoardServiceImpl implements BoardService {
             if (board != null) {
                 board.setTitle(boardRequest.getTitle());
                 board.setDescription(boardRequest.getDescription());
-                board.setArchive(boardRequest.getArchive());
                 board.setFavorite(boardRequest.getFavorite());
                 board.setWorkspace(workspace);
                 boardRepo.save(board);
@@ -75,18 +73,6 @@ public class BoardServiceImpl implements BoardService {
         Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
         if (workspace != null) {
             boardRepo.deleteById(boardId);
-        }
-    }
-
-    @Override
-    public void toggleBoardIsArchive(Long workspaceId, Long boardId) {
-        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
-        if (workspace != null) {
-            Board board = boardRepo.findByIdAndWorkspace(boardId, workspace);
-            if (board != null) {
-                board.setArchive(!board.getArchive());
-                boardRepo.save(board);
-            }
         }
     }
 
@@ -113,7 +99,6 @@ public class BoardServiceImpl implements BoardService {
         boardDTO.setId(board.getId());
         boardDTO.setTitle(board.getTitle());
         boardDTO.setDescription(board.getDescription());
-        boardDTO.setArchive(board.getArchive());
         boardDTO.setFavorite(board.getFavorite());
 
         return boardDTO;

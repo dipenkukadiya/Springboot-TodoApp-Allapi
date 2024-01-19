@@ -51,12 +51,6 @@ public class BoardController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{workspaceId}/boards/{boardId}/toggleArchive")
-    public ResponseEntity<Void> toggleBoardIsArchive(@PathVariable Long workspaceId, @PathVariable Long boardId) {
-        boardService.toggleBoardIsArchive(workspaceId, boardId);
-        return ResponseEntity.ok().build();
-    }
-
     @PatchMapping("/{workspaceId}/boards/{boardId}/toggleFavorite")
     public ResponseEntity<Void> toggleBoardIsFavorite(@PathVariable Long workspaceId, @PathVariable Long boardId) {
         boardService.toggleBoardIsFavorite(workspaceId, boardId);

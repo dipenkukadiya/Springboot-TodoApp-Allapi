@@ -30,9 +30,6 @@ public class Board{
 
     @Column(name = "is_favorite")
     private Boolean favorite;
-
-    @Column(name = "is_archive")
-    private Boolean archive;
     
     @ManyToOne
     @JoinColumn(name = "workspace_id")

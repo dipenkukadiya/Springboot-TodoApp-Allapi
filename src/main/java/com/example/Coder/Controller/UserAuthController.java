@@ -1,5 +1,7 @@
 package com.example.Coder.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Coder.Entity.User;
-import com.example.Coder.Request.UserRequest;
+import com.example.Coder.Request.UserRegisterRequest;
+import com.example.Coder.Request.UserLoginRequest;
 import com.example.Coder.Service.UserAuthService;
 
 @RestController
@@ -24,20 +27,20 @@ public class UserAuthController {
     UserAuthService userAuthService;
 
     @PostMapping("/register")
-    public void addRegisterUser(@RequestBody User user) {
-        userAuthService.addRegisterUser(user);
+    public void addUser(@RequestBody UserRegisterRequest userRegisterRequest) {
+        userAuthService.addUser(userRegisterRequest);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody UserRequest userDto) {
-        // String token = userAuthService.loginUser(userDto);
+    public ResponseEntity<String> loginUser(@RequestBody UserLoginRequest userLoginRequest) {
+        
         try {
-            String token = userAuthService.loginUser(userDto);
+            String token = userAuthService.loginUser(userLoginRequest);
             if (token != null) {
-                // Authentication successful, return JWT token
+                
                 return ResponseEntity.ok(token);
             } else {
-                // Authentication failed
+               
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
             }
         } catch (Exception e) {
@@ -47,10 +50,10 @@ public class UserAuthController {
     }
     // ########## GET ALL USER #############
 
-    // @GetMapping("/getalluser")
-    // public List<User> getUsers() {
-    // return userAuthService.getUsers();
-    // }
+    @GetMapping("/getalluser")
+    public List<User> getUsers() {
+    return userAuthService.getUsers();
+    }
     // ########## GET ALL USER BY EMAIL #############
 
     // @GetMapping("/{email}")

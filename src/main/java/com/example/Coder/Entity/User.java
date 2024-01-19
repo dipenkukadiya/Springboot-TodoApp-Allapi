@@ -1,5 +1,10 @@
 package com.example.Coder.Entity;
 
+import java.sql.Date;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,5 +29,17 @@ public class User {
 
     @Column(name = "password")
     private String password;
+    
+    @CreatedDate
+    @Column(name = "created_date")
+    private Date createdDate;
+    
+    @LastModifiedDate
+    @Column(name = "updated_date")
+    private Date updatedDate;
+
+   
+
+
 
 }

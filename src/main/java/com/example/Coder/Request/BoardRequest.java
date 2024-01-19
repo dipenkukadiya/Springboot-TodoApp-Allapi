@@ -4,16 +4,16 @@ public class BoardRequest {
     private String title;
     private String description;
     private Boolean favorite;
-    private Boolean archive;
+  
 
     public BoardRequest() {
     }
 
-    public BoardRequest(String title, String description, Boolean favorite, Boolean archive) {
+    public BoardRequest(String title, String description, Boolean favorite) {
         this.title = title;
         this.description = description;
         this.favorite = favorite;
-        this.archive = archive;
+    
     }
 
     public String getTitle() {
@@ -40,12 +40,6 @@ public class BoardRequest {
         this.favorite = favorite;
     }
 
-    public Boolean getArchive() {
-        return archive;
-    }
-
-    public void setArchive(Boolean archive) {
-        this.archive = archive;
-    }
+ 
 
 }
