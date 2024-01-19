@@ -19,8 +19,7 @@ public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long UserId;
-
+    private Long id;
     @Column(name = "user_name")
     private String Username;
 
@@ -29,17 +28,13 @@ public class User {
 
     @Column(name = "password")
     private String password;
-    
+
     @CreatedDate
     @Column(name = "created_date")
     private Date createdDate;
-    
+
     @LastModifiedDate
     @Column(name = "updated_date")
     private Date updatedDate;
-
-   
-
-
 
 }
