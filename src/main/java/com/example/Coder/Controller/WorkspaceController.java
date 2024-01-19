@@ -19,6 +19,7 @@ import com.example.Coder.Request.WorkspaceRequest;
 import com.example.Coder.Service.WorkspaceService;
 
 @RestController
+// @Api(value="/api/v1/workspaces",description = "Operation for workspace")
 @RequestMapping("/api/v1/workspaces")
 public class WorkspaceController {
 
@@ -30,7 +31,6 @@ public class WorkspaceController {
         workspaceService.addWorkspace(workspaceRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
     @GetMapping
     public ResponseEntity<List<WorkspaceDTO>> getAllWorkspaces() {
         List<WorkspaceDTO> workspaces = workspaceService.getAllWorkspaces();
