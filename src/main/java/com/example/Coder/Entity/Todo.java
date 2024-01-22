@@ -59,4 +59,3 @@ public class Todo {
     @Column(name = "updated_date")
     private Date updatedDate;
 }
-// 

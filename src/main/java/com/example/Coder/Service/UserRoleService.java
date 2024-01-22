@@ -1,7 +1,5 @@
 package com.example.Coder.Service;
 
-
-public interface TodoService {
-    
+public interface UserRoleService {
     
 }

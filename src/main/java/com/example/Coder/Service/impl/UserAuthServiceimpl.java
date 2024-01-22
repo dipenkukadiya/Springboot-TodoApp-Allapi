@@ -28,6 +28,7 @@ public class UserAuthServiceimpl implements UserAuthService {
         user.setUsername(userRegisterRequest.getUsername());
         user.setEmail(userRegisterRequest.getEmail());
         user.setPassword(userRegisterRequest.getPassword());
+        user.setRole(userRegisterRequest.getRole());
         user.setCreatedDate(userRegisterRequest.getCreatedDate());
         user.setUpdatedDate(userRegisterRequest.getUpdatedDate());
         userRepo.save(user);

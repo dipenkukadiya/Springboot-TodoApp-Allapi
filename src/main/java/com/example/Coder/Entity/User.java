@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Data
@@ -28,6 +29,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "role_name")
+    private String Role;
 
     @CreatedDate
     @Column(name = "created_date")
