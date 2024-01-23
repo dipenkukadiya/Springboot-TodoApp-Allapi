@@ -12,11 +12,11 @@ CREATE TABLE user_role (
 -- Insert initial data
 INSERT INTO user_role (role_name, role_key, role_description)
 VALUES
-    ('web developer', 'Key1', 'Description1'),
-    ('software enginner', 'Key2', 'Description2'),
-    ('mean stack', 'Key3', 'Description3'),
-    ('mern stack', 'Key4', 'Description4'),
-    ('team leader', 'Key5', 'Description5'),
-    ('analysy and testing', 'Key6', 'Description6'),
-    ('project manager', 'Key7', 'Description7'),
-    ('android developer', 'Key8', 'Description8');
+    ('Web Developer', 'Key1', 'this is role for web developer'),
+    ('Software Engineeer', 'Key2', 'this is role for software engineer'),
+    ('MEAN Stack Developer', 'Key3', 'this is role for MEAN '),
+    ('MERN Stack Developer', 'Key4', 'this is role for MERN'),
+    ('Team Leader', 'Key5', 'i am team leader'),
+    ('Analyses and testing', 'Key6', 'i am a software tester and analizer'),
+    ('Project Manager', 'Key7', 'Project Manager Role'),
+    ('Android Developer', 'Key8', 'i am android and flutteer developer');

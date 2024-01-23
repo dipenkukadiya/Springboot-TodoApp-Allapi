@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.example.Coder.Auhtentication.JwtUtil;
 import com.example.Coder.DTO.UserDTO;
 import com.example.Coder.Entity.User;
+import com.example.Coder.Entity.UserRole;
 import com.example.Coder.Repository.UserRepo;
+import com.example.Coder.Repository.UserRoleRepo;
 import com.example.Coder.Request.UserRegisterRequest;
 import com.example.Coder.Request.UserUpdateRequest;
 import com.example.Coder.Request.UserLoginRequest;
@@ -24,6 +26,8 @@ public class UserAuthServiceimpl implements UserAuthService {
     UserRepo userRepo;
     @Autowired
     JwtUtil jwtUtil;
+    @Autowired
+    UserRoleRepo userRoleRepo;
 
     @Override
     public void addUser(UserRegisterRequest userRegisterRequest) {
@@ -96,10 +100,19 @@ public class UserAuthServiceimpl implements UserAuthService {
 
     private UserDTO convertUserToDTO(User user) {
         UserDTO userDTO = new UserDTO();
+        // UserRole userRole = new UserRole();
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setRole(user.getRole());
-        userDTO.setDescreption();
+        UserRole userRole = userRoleRepo.findByRoleName(user.getRole());
+
+        if (userRole != null) {
+            userDTO.setDescreption(userRole.getDescription());
+        } else {
+            // Handle the case where the UserRole is not found
+            userDTO.setDescreption("Role description not available");
+        }
+
         return userDTO;
     }
 

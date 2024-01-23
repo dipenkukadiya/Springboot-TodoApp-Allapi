@@ -6,4 +6,6 @@ import com.example.Coder.Entity.UserRole;
 
 public interface UserRoleRepo extends JpaRepository<UserRole, Long> {
 
+    UserRole findByRoleName(String role);
+
 }
