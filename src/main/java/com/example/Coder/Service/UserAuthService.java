@@ -15,7 +15,7 @@ public interface UserAuthService {
 
     User getByToken(String token);
 
-    List<User> getUsers();
+    List<UserDTO> getUsers();
     
     UserDTO getUserById(Long user_id);
     

@@ -23,6 +23,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         userRole.setRoleName(userRoleRequest.getRoleName());
         userRole.setRoleKey(userRoleRequest.getRoleKey());
         userRole.setDescription(userRoleRequest.getDescription());
+
         userRoleRepo.save(userRole);
     }
 

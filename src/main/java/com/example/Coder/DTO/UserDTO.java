@@ -1,29 +1,20 @@
 package com.example.Coder.DTO;
 
-
-
 public class UserDTO {
-    private Long id;
+
     private String Username;
     private String email;
     private String Role;
+    private String Descreption;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String username, String email, String role) {
-        this.id = id;
+    public UserDTO(String username, String email, String role, String descreption) {
         Username = username;
         this.email = email;
         Role = role;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        Descreption = descreption;
     }
 
     public String getUsername() {
@@ -49,6 +40,13 @@ public class UserDTO {
     public void setRole(String role) {
         Role = role;
     }
-    
+
+    public String getDescreption() {
+        return Descreption;
+    }
+
+    public void setDescreption(String descreption) {
+        Descreption = descreption;
+    }
 
 }

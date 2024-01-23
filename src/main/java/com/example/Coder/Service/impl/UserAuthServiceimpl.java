@@ -1,5 +1,6 @@
 package com.example.Coder.Service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // import java.util.List;
@@ -62,48 +63,65 @@ public class UserAuthServiceimpl implements UserAuthService {
     }
 
     @Override
-    public List<User> getUsers() {
-        return userRepo.findAll();
+    public List<UserDTO> getUsers() {
+        List<User> users = userRepo.findAll();
 
+        // Assuming you have a method to convert User entities to UserDTO
+        List<UserDTO> userDTOs = convertToUserDTOList(users);
+
+        return userDTOs;
+    }
+
+    // Sample conversion method (you need to implement this)
+    private List<UserDTO> convertToUserDTOList(List<User> users) {
+        List<UserDTO> userDTOs = new ArrayList<>();
+
+        for (User user : users) {
+            UserDTO userDTO = convertUserToDTO(user);
+            userDTOs.add(userDTO);
+        }
+
+        return userDTOs;
     }
 
     @Override
     public UserDTO getUserById(Long user_id) {
         User user = userRepo.findById(user_id).orElse(null);
-      if(user != null){
-        return convertUserToDTO(user);
-      }
-      return null;
+
+        if (user != null) {
+            return convertUserToDTO(user);
+        }
+        return null;
     }
 
     private UserDTO convertUserToDTO(User user) {
-       UserDTO userDTO = new UserDTO();
-       userDTO.setId(user.getId());
-       userDTO.setUsername(user.getUsername());
-       userDTO.setEmail(user.getEmail());
-       userDTO.setRole(user.getRole());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(user.getUsername());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setRole(user.getRole());
+        userDTO.setDescreption();
         return userDTO;
     }
 
     @Override
     public void updateUser(UserUpdateRequest userUpdateRequest, Long user_id) {
-       User user = userRepo.findById(user_id).orElse(null);
-       System.out.println("hello update");
-       if(user != null){
-        user.setUsername(userUpdateRequest.getUsername());
-        user.setPassword(userUpdateRequest.getPassword());
-        user.setEmail(userUpdateRequest.getEmail());
-        user.setRole(userUpdateRequest.getRole());
-        userRepo.save(user);
+        User user = userRepo.findById(user_id).orElse(null);
+        System.out.println("hello update");
+        if (user != null) {
+            user.setUsername(userUpdateRequest.getUsername());
+            user.setPassword(userUpdateRequest.getPassword());
+            user.setEmail(userUpdateRequest.getEmail());
+            user.setRole(userUpdateRequest.getRole());
+            userRepo.save(user);
 
-       }
+        }
 
     }
 
     @Override
     public void removeUser(Long user_id) {
         userRepo.deleteById(user_id);
-       
+
     }
 
     // @Override

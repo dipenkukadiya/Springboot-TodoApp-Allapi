@@ -54,7 +54,7 @@ public class UserAuthController {
     }
 
     @GetMapping("/getalluser")
-    public List<User> getUsers() {
+    public List<UserDTO> getUsers() {
         return userAuthService.getUsers();
     }
 
