@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
-
 import com.example.Coder.DTO.UserDTO;
 import com.example.Coder.Entity.User;
 import com.example.Coder.Request.UserRegisterRequest;
@@ -54,7 +52,6 @@ public class UserAuthController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An internal server error occurred");
         }
     }
-    // ########## GET ALL USER #############
 
     @GetMapping("/getalluser")
     public List<User> getUsers() {
