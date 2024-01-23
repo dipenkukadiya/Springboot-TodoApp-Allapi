@@ -28,8 +28,8 @@ public class Todo {
     private Boolean isArchived;
 
     @ManyToOne
-    @JoinColumn(name = "card_id")
-    private Card card;
+    @JoinColumn(name = "todolist_id")
+    private Todolist todolist;
 
     @OneToOne
     @JoinColumn(name = "created_by_id") // Change to a different name, e.g., created_by_id

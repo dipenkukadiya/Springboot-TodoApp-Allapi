@@ -13,20 +13,20 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 @Data
 @Entity
-public class Card {
+public class Todolist {
     @Id
-    @Column(name = "card_id")
+    @Column(name = "todolist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "card_name")
+    @Column(name = "todolist_name")
     private String name;
 
-    @Column(name = "card_key") 
-    private String cardKey;
+    @Column(name = "todolist_key") 
+    private String todolistKey;
 
-    @Column(name = "card_index") 
-    private Long cardIndex;
+    @Column(name = "todolist_index") 
+    private Long todolistIndex;
 
     @Column(name = "is_archive")
     private Boolean isArchive;
