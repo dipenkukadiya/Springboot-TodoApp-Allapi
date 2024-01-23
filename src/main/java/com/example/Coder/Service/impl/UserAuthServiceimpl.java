@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Coder.Auhtentication.JwtUtil;
+import com.example.Coder.DTO.UserDTO;
 import com.example.Coder.Entity.User;
 import com.example.Coder.Repository.UserRepo;
 import com.example.Coder.Request.UserRegisterRequest;
+import com.example.Coder.Request.UserUpdateRequest;
 import com.example.Coder.Request.UserLoginRequest;
 import com.example.Coder.Service.UserAuthService;
 
@@ -64,9 +66,48 @@ public class UserAuthServiceimpl implements UserAuthService {
         return userRepo.findAll();
 
     }
+
+    @Override
+    public UserDTO getUserById(Long user_id) {
+        User user = userRepo.findById(user_id).orElse(null);
+      if(user != null){
+        return convertUserToDTO(user);
+      }
+      return null;
+    }
+
+    private UserDTO convertUserToDTO(User user) {
+       UserDTO userDTO = new UserDTO();
+       userDTO.setId(user.getId());
+       userDTO.setUsername(user.getUsername());
+       userDTO.setEmail(user.getEmail());
+       userDTO.setRole(user.getRole());
+        return userDTO;
+    }
+
+    @Override
+    public void updateUser(UserUpdateRequest userUpdateRequest, Long user_id) {
+       User user = userRepo.findById(user_id).orElse(null);
+       System.out.println("hello update");
+       if(user != null){
+        user.setUsername(userUpdateRequest.getUsername());
+        user.setPassword(userUpdateRequest.getPassword());
+        user.setEmail(userUpdateRequest.getEmail());
+        user.setRole(userUpdateRequest.getRole());
+        userRepo.save(user);
+
+       }
+
+    }
+
+    @Override
+    public void removeUser(Long user_id) {
+        userRepo.deleteById(user_id);
+       
+    }
+
     // @Override
     // public User getUserByemail(String email) {
     // return userRepo.findByemail(email);
     // }
-
 }
