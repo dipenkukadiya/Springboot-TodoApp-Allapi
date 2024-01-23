@@ -2,8 +2,6 @@ package com.example.Coder.Request;
 
 import java.sql.Date;
 
-import com.example.Coder.Entity.UserRole;
-
 public class UserRegisterRequest {
     private String Username;
     private String email;

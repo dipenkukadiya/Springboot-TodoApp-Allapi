@@ -4,14 +4,14 @@ public class CardRequest {
     private String name;
     private String cardKey;
     private Long cardIndex;
-    private boolean archive;
+    private boolean isArchive;
     public CardRequest() {
     }
-    public CardRequest(String name, String cardKey, Long cardIndex, boolean archive) {
+    public CardRequest(String name, String cardKey, Long cardIndex, boolean isArchive) {
         this.name = name;
         this.cardKey = cardKey;
         this.cardIndex = cardIndex;
-        this.archive = archive;
+        this.isArchive = isArchive;
     }
     public String getName() {
         return name;
@@ -31,11 +31,12 @@ public class CardRequest {
     public void setCardIndex(Long cardIndex) {
         this.cardIndex = cardIndex;
     }
-    public boolean isArchive() {
-        return archive;
+    public boolean getIsArchive() {
+        return isArchive;
     }
-    public void setArchive(boolean archive) {
-        this.archive = archive;
+    public void setIsArchive(boolean isArchive) {
+        this.isArchive = isArchive;
     }
+    
     
 }

@@ -44,7 +44,7 @@ public class CardServiceImpl implements CardService {
             card.setName(cardRequest.getName());
             card.setCardIndex(cardRequest.getCardIndex());
             card.setCardKey(cardRequest.getCardKey());
-            card.setArchive(cardRequest.isArchive());
+            card.setIsArchive(cardRequest.getIsArchive());
             card.setBoard(board);
             cardRepo.save(card);
         }
@@ -60,7 +60,7 @@ public class CardServiceImpl implements CardService {
                 card.setName(cardRequest.getName());
                 card.setCardIndex(cardRequest.getCardIndex());
                 card.setCardKey(cardRequest.getCardKey());
-                card.setArchive(cardRequest.isArchive());
+                card.setIsArchive(cardRequest.getIsArchive());
                 card.setBoard(board);
                 cardRepo.save(card);
             }
@@ -83,7 +83,7 @@ public class CardServiceImpl implements CardService {
         if (board != null) {
             Card card = cardRepo.findByIdAndBoardId(cardId, boardId);
             if (card != null) {
-                card.setArchive(!card.getArchive());
+                card.setIsArchive(!card.getIsArchive());
                 cardRepo.save(card);
             }
         }
@@ -101,7 +101,7 @@ public class CardServiceImpl implements CardService {
         cardDTO.setName(card.getName());
         cardDTO.setCardKey(card.getCardKey());
         cardDTO.setCardIndex(card.getCardIndex());
-        cardDTO.setArchive(card.getArchive());
+        cardDTO.setIsArchive(card.getIsArchive());
 
         return cardDTO;
     }

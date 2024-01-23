@@ -29,7 +29,7 @@ public class Board{
     private String description;
 
     @Column(name = "is_favorite")
-    private Boolean favorite;
+    private Boolean isFavorite;
     
     @ManyToOne
     @JoinColumn(name = "workspace_id")

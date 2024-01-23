@@ -72,7 +72,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         workspaceDTO.setId(workspace.getId());
         workspaceDTO.setTitle(workspace.getTitle());
         workspaceDTO.setDescription(workspace.getDescription());
-        workspaceDTO.setPrivate(workspace.getIsPrivate());
+        workspaceDTO.setIsPrivate(workspace.getIsPrivate());
 
         return workspaceDTO;
     }

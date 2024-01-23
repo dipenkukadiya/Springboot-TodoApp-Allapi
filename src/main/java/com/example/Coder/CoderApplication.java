@@ -24,7 +24,7 @@ public class CoderApplication {
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/api/v1/**")
                     .allowedOrigins("http://localhost:4200")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE","PATCH")
                     .allowCredentials(true)
                     .maxAge(3600);
         }

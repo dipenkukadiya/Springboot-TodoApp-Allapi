@@ -5,17 +5,17 @@ public class BoardDTO {
     private Long id;
     private String title;
     private String description;
-    private boolean favorite;
+    private boolean isFavorite;
   
 
     public BoardDTO() {
     }
 
-    public BoardDTO(Long id, String title, String description, boolean favorite) {
+    public BoardDTO(Long id, String title, String description, boolean isFavorite) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.favorite = favorite;
+        this.isFavorite = isFavorite;
        
     }
 
@@ -43,13 +43,14 @@ public class BoardDTO {
         this.description = description;
     }
 
-    public boolean isFavorite() {
-        return favorite;
+    public boolean getIsFavorite() {
+        return isFavorite;
     }
 
-    public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
+    public void setIsFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 
+  
     
 }

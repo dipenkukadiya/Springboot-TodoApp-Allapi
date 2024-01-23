@@ -32,11 +32,11 @@ public class BoardRequest {
         this.description = description;
     }
 
-    public Boolean getFavorite() {
+    public Boolean getIsFavorite() {
         return favorite;
     }
 
-    public void setFavorite(Boolean favorite) {
+    public void setIsFavorite(Boolean favorite) {
         this.favorite = favorite;
     }
 

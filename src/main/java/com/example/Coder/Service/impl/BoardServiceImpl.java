@@ -47,7 +47,7 @@ public class BoardServiceImpl implements BoardService {
             Board board = new Board();
             board.setTitle(boardRequest.getTitle());
             board.setDescription(boardRequest.getDescription());
-            board.setFavorite(boardRequest.getFavorite());
+            board.setIsFavorite(boardRequest.getIsFavorite());
             board.setWorkspace(workspace);
             boardRepo.save(board);
         }
@@ -61,7 +61,7 @@ public class BoardServiceImpl implements BoardService {
             if (board != null) {
                 board.setTitle(boardRequest.getTitle());
                 board.setDescription(boardRequest.getDescription());
-                board.setFavorite(boardRequest.getFavorite());
+                board.setIsFavorite(boardRequest.getIsFavorite());
                 board.setWorkspace(workspace);
                 boardRepo.save(board);
             }
@@ -82,7 +82,7 @@ public class BoardServiceImpl implements BoardService {
         if (workspace != null) {
             Board board = boardRepo.findByIdAndWorkspace(boardId, workspace);
             if (board != null) {
-                board.setFavorite(!board.getFavorite());
+                board.setIsFavorite(!board.getIsFavorite());
                 boardRepo.save(board);
             }
         }
@@ -99,7 +99,7 @@ public class BoardServiceImpl implements BoardService {
         boardDTO.setId(board.getId());
         boardDTO.setTitle(board.getTitle());
         boardDTO.setDescription(board.getDescription());
-        boardDTO.setFavorite(board.getFavorite());
+        boardDTO.setIsFavorite(board.getIsFavorite());
 
         return boardDTO;
     }

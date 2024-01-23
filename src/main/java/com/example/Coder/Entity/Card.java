@@ -29,7 +29,7 @@ public class Card {
     private Long cardIndex;
 
     @Column(name = "is_archive")
-    private Boolean archive;
+    private Boolean isArchive;
 
     @ManyToOne
     @JoinColumn(name = "board_id")

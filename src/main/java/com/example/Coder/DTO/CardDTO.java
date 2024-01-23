@@ -6,15 +6,15 @@ public class CardDTO {
     private String name;
     private String cardKey;
     private Long cardIndex;
-    private boolean archive;
+    private boolean isArchive;
     public CardDTO() {
     }
-    public CardDTO(Long id, String name, String cardKey, Long cardIndex, boolean archive) {
+    public CardDTO(Long id, String name, String cardKey, Long cardIndex, boolean isArchive) {
         this.id = id;
         this.name = name;
         this.cardKey = cardKey;
         this.cardIndex = cardIndex;
-        this.archive = archive;
+        this.isArchive = isArchive;
     }
     public Long getId() {
         return id;
@@ -40,11 +40,12 @@ public class CardDTO {
     public void setCardIndex(Long cardIndex) {
         this.cardIndex = cardIndex;
     }
-    public boolean isArchive() {
-        return archive;
+    public boolean getIsArchive() {
+        return isArchive;
     }
-    public void setArchive(boolean archive) {
-        this.archive = archive;
+    public void setIsArchive(boolean isArchive) {
+        this.isArchive = isArchive;
     }
+    
     
 }

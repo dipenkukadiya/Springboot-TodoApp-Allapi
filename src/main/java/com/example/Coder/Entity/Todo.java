@@ -25,7 +25,7 @@ public class Todo {
     private String todoKey;
 
     @Column(name = "is_archived")
-    private Boolean archived;
+    private Boolean isArchived;
 
     @ManyToOne
     @JoinColumn(name = "card_id")

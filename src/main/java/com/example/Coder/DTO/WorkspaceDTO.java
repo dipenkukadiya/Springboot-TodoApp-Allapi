@@ -45,7 +45,7 @@ public class WorkspaceDTO {
         return isPrivate;
     }
 
-    public void setPrivate(boolean isPrivate) {
+    public void setIsPrivate(boolean isPrivate) {
         this.isPrivate = isPrivate;
     }
 
