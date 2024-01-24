@@ -5,7 +5,9 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,11 +34,11 @@ public class Todo {
     private Todolist todolist;
 
     @OneToOne
-    @JoinColumn(name = "created_by_id") // Change to a different name, e.g., created_by_id
+    @JoinColumn(name = "created_by_id")
     private User createdBy;
 
     @ManyToOne
-    @JoinColumn(name = "assigned_to_id") // Change to a different name, e.g., assigned_to_id
+    @JoinColumn(name = "assigned_to_id")
     private User assignedTo;
 
     @Column(name = "assigned_date")
@@ -51,11 +53,14 @@ public class Todo {
     @Column(name = "end_date")
     private String endDate;
 
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
     @CreatedDate
     @Column(name = "created_date")
-    private Date createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(name = "updated_date")
-    private Date updatedDate;
+    private LocalDateTime updatedDate;
 }

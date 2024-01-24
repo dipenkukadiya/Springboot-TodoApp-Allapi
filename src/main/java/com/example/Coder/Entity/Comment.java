@@ -5,24 +5,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity
 @Data
-public class UserRole {
+public class Comment {
     @Id
-    @Column(name = "role_id")
+    @Column(name = "comment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "role_name")
-    private String roleName;
 
-    @Column(name = "role_key")
-    private String roleKey;
-    
-    @Column(name = "role_description")
-    private String Description;
+    @ManyToOne
+    @JoinColumn(name = "todo_id")
+    private Todo todo;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @Column(name = "comment")
+    private String comment;
 }
