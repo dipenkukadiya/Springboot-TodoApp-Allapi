@@ -21,7 +21,13 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     private WorkspaceRepo workspaceRepo;
-
+    
+    @Override
+    public List<BoardDTO> getAllBoards() {
+      List<Board> boards= boardRepo.findAll();
+      return boards.stream()
+      .map(this::convertBoardToDTO).collect(Collectors.toList());
+    }
     @Override
     public List<BoardDTO> getAllBoardByWorkspaceId(Long workspaceId) {
         Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
@@ -103,4 +109,5 @@ public class BoardServiceImpl implements BoardService {
 
         return boardDTO;
     }
+
 }

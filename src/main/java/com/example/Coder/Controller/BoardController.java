@@ -16,6 +16,11 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+    @GetMapping("/boards")
+    public ResponseEntity <List<BoardDTO>> getAllBoards(){
+        List<BoardDTO> boards = boardService.getAllBoards();
+        return ResponseEntity.ok(boards);
+    }
 
     @GetMapping("/{workspaceId}/boards")
     public ResponseEntity<List<BoardDTO>> getAllBoardsByWorkspaceId(@PathVariable Long workspaceId) {

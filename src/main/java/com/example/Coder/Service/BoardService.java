@@ -6,6 +6,7 @@ import com.example.Coder.DTO.BoardDTO;
 import com.example.Coder.Request.BoardRequest;
 
 public interface BoardService {
+    List<BoardDTO> getAllBoards();
 
     List<BoardDTO> getAllBoardByWorkspaceId(Long workspace_id);
 
