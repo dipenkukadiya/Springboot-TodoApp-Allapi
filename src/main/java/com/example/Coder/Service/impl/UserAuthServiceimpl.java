@@ -1,5 +1,6 @@
 package com.example.Coder.Service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,9 @@ import com.example.Coder.Entity.User;
 import com.example.Coder.Entity.UserRole;
 import com.example.Coder.Repository.UserRepo;
 import com.example.Coder.Repository.UserRoleRepo;
+import com.example.Coder.Request.UserLoginRequest;
 import com.example.Coder.Request.UserRegisterRequest;
 import com.example.Coder.Request.UserUpdateRequest;
-import com.example.Coder.Request.UserLoginRequest;
 import com.example.Coder.Service.UserAuthService;
 
 @Service
@@ -32,12 +33,15 @@ public class UserAuthServiceimpl implements UserAuthService {
     @Override
     public void addUser(UserRegisterRequest userRegisterRequest) {
         User user = new User();
+
         user.setUsername(userRegisterRequest.getUsername());
         user.setEmail(userRegisterRequest.getEmail());
         user.setPassword(userRegisterRequest.getPassword());
         user.setRole(userRegisterRequest.getRole());
-        user.setCreatedDate(userRegisterRequest.getCreatedDate());
-        user.setUpdatedDate(userRegisterRequest.getUpdatedDate());
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        user.setCreatedDate(currentDateTime);
+        user.setUpdatedDate(currentDateTime);
+
         userRepo.save(user);
 
     }
@@ -70,13 +74,11 @@ public class UserAuthServiceimpl implements UserAuthService {
     public List<UserDTO> getUsers() {
         List<User> users = userRepo.findAll();
 
-        // Assuming you have a method to convert User entities to UserDTO
         List<UserDTO> userDTOs = convertToUserDTOList(users);
 
         return userDTOs;
     }
 
-    // Sample conversion method (you need to implement this)
     private List<UserDTO> convertToUserDTOList(List<User> users) {
         List<UserDTO> userDTOs = new ArrayList<>();
 
@@ -104,12 +106,13 @@ public class UserAuthServiceimpl implements UserAuthService {
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setRole(user.getRole());
+
         UserRole userRole = userRoleRepo.findByRoleName(user.getRole());
 
-        if (userRole != null) {
+        if (userRole != null ) {
             userDTO.setDescreption(userRole.getDescription());
         } else {
-            // Handle the case where the UserRole is not found
+
             userDTO.setDescreption("Role description not available");
         }
 

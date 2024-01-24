@@ -90,16 +90,17 @@ public class UserAuthController {
         }
     }
 
-    // ########## GET ALL USER BY EMAIL #############
-
-    // @GetMapping("/{email}")
-    // public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-    // User user = userAuthService.getUserByemail(email);
-
-    // if (user != null) {
-    // return new ResponseEntity<>(user, HttpStatus.OK);
-    // } else {
-    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-    // }
+    /*
+     * ########## GET ALL USER BY EMAIL #############
+     * 
+     * @GetMapping("/{email}")
+     * public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+     * User user = userAuthService.getUserByemail(email);
+     * if (user != null) {
+     * return new ResponseEntity<>(user, HttpStatus.OK);
+     * } else {
+     * return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+     * }
+     * }
+     */
 }

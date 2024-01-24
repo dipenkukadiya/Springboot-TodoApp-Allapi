@@ -12,7 +12,7 @@ import com.example.Coder.Request.UserRoleRequest;
 import com.example.Coder.Service.UserRoleService;
 
 @RestController
-@RequestMapping("/api/v1/user-roles/")
+@RequestMapping("/api/v1/user-roles")
 public class UserRoleController {
 
     @Autowired
