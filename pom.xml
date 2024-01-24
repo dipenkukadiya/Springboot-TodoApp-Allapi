@@ -112,7 +112,7 @@
 				<configuration>
 					<url>jdbc:mysql://localhost:3306/todoapp</url>
 					<user>root</user>
-					<password>root</password>
+					<password>Admin@123</password>
 				</configuration>
 			</plugin>
 		</plugins>
