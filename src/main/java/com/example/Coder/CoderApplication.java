@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "TODOApp API", version = "1.0", description = "Todo CRUD operation"))
+@OpenAPIDefinition(info = @Info(title = "TODOApp API", version = "2.0", description = "TodoApp All CRUD operation"))
 public class CoderApplication {
 
     public static void main(String[] args) {
