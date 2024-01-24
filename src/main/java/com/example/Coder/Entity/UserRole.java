@@ -20,8 +20,7 @@ public class UserRole {
 
     @Column(name = "role_key")
     private String roleKey;
-
-
+    
     @Column(name = "role_description")
     private String Description;
 
