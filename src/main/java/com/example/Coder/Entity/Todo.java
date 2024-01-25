@@ -7,7 +7,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -33,25 +35,25 @@ public class Todo {
     @JoinColumn(name = "todolist_id")
     private Todolist todolist;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "created_by_id")
     private User createdBy;
 
-    @ManyToOne
-    @JoinColumn(name = "assigned_to_id")
-    private User assignedTo;
+    @ManyToMany
+    @JoinTable(name = "todo_assignees", joinColumns = @JoinColumn(name = "todo_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> assignees = new HashSet<>();
+    
+    // @Column(name = "assigned_date")
+    // private String assignedDate;
 
-    @Column(name = "assigned_date")
-    private String assignedDate;
+    // @Column(name = "estimated_hours")
+    // private String estimatedHours;
 
-    @Column(name = "estimated_hours")
-    private String estimatedHours;
+    // @Column(name = "start_date")
+    // private String startDate;
 
-    @Column(name = "start_date")
-    private String startDate;
-
-    @Column(name = "end_date")
-    private String endDate;
+    // @Column(name = "end_date")
+    // private String endDate;
 
     @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();

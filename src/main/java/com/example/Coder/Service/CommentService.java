@@ -10,9 +10,9 @@ public interface CommentService {
 
     List<CommentDTO> getComment();
 
-    CommentDTO getCommentBytodoId(Long todoId);
+    List<CommentDTO> getCommentBytodoId(Long todoId);
 
-    CommentDTO getCommentByUserId(Long UserId);
+    List<CommentDTO> getCommentByUserId(Long UserId);
 
     void addComment(CommentRequest commentRequest ,Long userId ,Long todoId);
 

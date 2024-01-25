@@ -1,4 +1,5 @@
 package com.example.Coder.Controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,32 +32,30 @@ public class CommentController {
     }
 
     @GetMapping("/todo/{todoId}")
-    public ResponseEntity<CommentDTO> getCommentByTodoId(@PathVariable Long todoId) {
-        CommentDTO comment = commentService.getCommentByUserId(todoId);
-        return comment != null ?
-                new ResponseEntity<>(comment, HttpStatus.OK) :
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<List<CommentDTO>> getCommentsByTodoId(@PathVariable Long todoId) {
+        List<CommentDTO> comments = commentService.getCommentBytodoId(todoId);
+        return comments != null && !comments.isEmpty() ? new ResponseEntity<>(comments, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<CommentDTO> getCommentByUserId(@PathVariable Long userId) {
-        CommentDTO comment = commentService.getCommentByUserId(userId);
-        return comment != null ?
-                new ResponseEntity<>(comment, HttpStatus.OK) :
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<List<CommentDTO>> getCommentsByUserId(@PathVariable Long userId) {
+        List<CommentDTO> comments = commentService.getCommentByUserId(userId);
+        return comments != null && !comments.isEmpty() ? new ResponseEntity<>(comments, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/add/{userId}/{todoId}")
     public ResponseEntity<Void> addComment(@RequestBody CommentRequest commentRequest,
-                                          @PathVariable Long userId,
-                                          @PathVariable Long todoId) {
+            @PathVariable Long userId,
+            @PathVariable Long todoId) {
         commentService.addComment(commentRequest, userId, todoId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{commentId}")
     public ResponseEntity<Void> updateComment(@RequestBody CommentRequest commentRequest,
-                                             @PathVariable Long commentId) {
+            @PathVariable Long commentId) {
         commentService.updateComment(commentRequest, commentId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

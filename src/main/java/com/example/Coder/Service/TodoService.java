@@ -1,24 +1,21 @@
-// package com.example.Coder.Service;
+package com.example.Coder.Service;
 
-// import java.util.List;
+import java.util.List;
 
-// import com.example.Coder.DTO.TodolistDTO;
-// import com.example.Coder.Request.TodolistRequest;
+import com.example.Coder.DTO.TodoDTO;
+import com.example.Coder.Request.TodoRequest;
 
-// public interface TodoService {
-//     List<TodoDTO> getAllTodoByWidBidndTodolistid(Long workspace_id,Long board_id,Long todolist_id);
+public interface TodoService {
 
-//     TodoDTO getTodoByTodoid(Long workspace_id, Long board_id,Long todolist_id,todo_id);
+    List<TodoDTO> getAllTodosByWBTId(Long workspaceId, Long boardId, Long todolistId);
 
-//     void addTodolist(Long workspace_id,Long board_id, TodolistRequest todolistRequest);
+    TodoDTO getTodoByWBTIdAndTodoId(Long workspaceId, Long boardId, Long todolistId, Long todoId);
 
-//     void updateTodolist(Long workspace_id, Long board_id,Long todolist_id, TodolistRequest todolistRequest);
+    void addTodo(Long workspaceId, Long boardId, Long todolistId, TodoRequest todoRequest);
 
-//     void removeTodolist(Long workspace_id, Long board_id ,Long todolist_id);
+    void updateTodo(Long workspaceId, Long boardId, Long todolistId, Long todoId, TodoRequest todoRequest);
 
-//     void toggleTodolistIsArchive(Long workspace_id, Long board_id ,Long todolist_id);
+    void removeTodo(Long workspaceId, Long boardId, Long todolistId, Long todoId);
 
-    
-    
-    
-// }
+    void archiveTodo(Long workspaceId, Long boardId, Long todolistId, Long todoId);
+}

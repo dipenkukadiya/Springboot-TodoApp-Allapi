@@ -37,15 +37,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDTO getCommentBytodoId(Long todoId) {
+    public List<CommentDTO> getCommentBytodoId(Long todoId) {
         List<Comment> comments = commentRepo.findByTodoId(todoId);
-        return mapCommentListToDTOList(comments).stream().findFirst().orElse(null);
+        return mapCommentListToDTOList(comments);
     }
 
     @Override
-    public CommentDTO getCommentByUserId(Long userId) {
+    public List<CommentDTO> getCommentByUserId(Long userId) {
         List<Comment> comments = commentRepo.findByUserId(userId);
-        return mapCommentListToDTOList(comments).stream().findFirst().orElse(null);
+        return mapCommentListToDTOList(comments);
     }
 
     @Override
@@ -79,7 +79,8 @@ public class CommentServiceImpl implements CommentService {
         commentRepo.delete(comment);
     }
 
-    // Helper method to manually map a list of Comment entities to a list of CommentDTOs
+    // Helper method to manually map a list of Comment entities to a list of
+    // CommentDTOs
     private List<CommentDTO> mapCommentListToDTOList(List<Comment> comments) {
         return comments.stream()
                 .map(this::mapCommentToDTO)
