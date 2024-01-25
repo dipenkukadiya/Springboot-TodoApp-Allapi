@@ -31,8 +31,8 @@ public class UserRoleController {
     }
 
     @GetMapping("/{userRole_id}")
-    public ResponseEntity<UserRole> getUserRoleById(@PathVariable Long userRole_id) {
-        UserRole userRole = userRoleService.getUserRoleById(userRole_id);
+    public ResponseEntity<UserRole> getUserRoleById(@PathVariable Long userRoleId) {
+        UserRole userRole = userRoleService.getUserRoleById(userRoleId);
         if (userRole != null) {
             return new ResponseEntity<>(userRole, HttpStatus.OK);
         } else {
@@ -40,16 +40,16 @@ public class UserRoleController {
         }
     }
 
-    @PutMapping("/{userRole_id}")
+    @PutMapping("/{userRoleId}")
     public ResponseEntity<Void> updateUserRole(@RequestBody UserRoleRequest userRoleRequest,
-            @PathVariable Long userRole_id) {
-        userRoleService.updateUserRole(userRoleRequest, userRole_id);
+            @PathVariable Long userRoleId) {
+        userRoleService.updateUserRole(userRoleRequest, userRoleId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{userRole_id}")
-    public ResponseEntity<Void> removeUserRole(@PathVariable Long userRole_id) {
-        userRoleService.removeUserRole(userRole_id);
+    @DeleteMapping("/{userRoleId}")
+    public ResponseEntity<Void> removeUserRole(@PathVariable Long userRoleId) {
+        userRoleService.removeUserRole(userRoleId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

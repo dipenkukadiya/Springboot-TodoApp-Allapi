@@ -17,11 +17,11 @@ public interface UserAuthService {
 
     List<UserDTO> getUsers();
     
-    UserDTO getUserById(Long user_id);
+    UserDTO getUserById(Long userId);
     
-    void updateUser(UserUpdateRequest userUpdateRequest, Long user_id);
+    void updateUser(UserUpdateRequest userUpdateRequest, Long userId);
     
-    void removeUser(Long user_id);
+    void removeUser(Long userId);
     
     // User getUserByemail(String email);
 }

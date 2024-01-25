@@ -59,23 +59,23 @@ public class UserAuthController {
     }
 
     @GetMapping("/user/{user_id}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable Long user_id) {
-        UserDTO userDTO = userAuthService.getUserById(user_id);
+    public ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
+        UserDTO userDTO = userAuthService.getUserById(userId);
         return ResponseEntity.ok(userDTO);
     }
 
     @PutMapping("/user/{user_id}")
     public ResponseEntity<Void> updateUser(@RequestBody UserUpdateRequest userUpdateRequest,
-            @PathVariable Long user_id) {
+            @PathVariable Long userId) {
         System.out.println("hello update controller");
-        userAuthService.updateUser(userUpdateRequest, user_id);
+        userAuthService.updateUser(userUpdateRequest, userId);
         return ResponseEntity.ok().build();
 
     }
 
     @DeleteMapping("user/{user_id}")
-    public ResponseEntity<Void> DeleteUser(@PathVariable Long user_id) {
-        userAuthService.removeUser(user_id);
+    public ResponseEntity<Void> DeleteUser(@PathVariable Long userId) {
+        userAuthService.removeUser(userId);
         return ResponseEntity.ok().build();
     }
 

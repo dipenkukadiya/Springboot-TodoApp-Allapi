@@ -91,8 +91,8 @@ public class UserAuthServiceimpl implements UserAuthService {
     }
 
     @Override
-    public UserDTO getUserById(Long user_id) {
-        User user = userRepo.findById(user_id).orElse(null);
+    public UserDTO getUserById(Long userId) {
+        User user = userRepo.findById(userId).orElse(null);
 
         if (user != null) {
             return convertUserToDTO(user);
@@ -109,7 +109,7 @@ public class UserAuthServiceimpl implements UserAuthService {
 
         UserRole userRole = userRoleRepo.findByRoleName(user.getRole());
 
-        if (userRole != null ) {
+        if (userRole != null) {
             userDTO.setDescreption(userRole.getDescription());
         } else {
 
@@ -120,8 +120,8 @@ public class UserAuthServiceimpl implements UserAuthService {
     }
 
     @Override
-    public void updateUser(UserUpdateRequest userUpdateRequest, Long user_id) {
-        User user = userRepo.findById(user_id).orElse(null);
+    public void updateUser(UserUpdateRequest userUpdateRequest, Long userId) {
+        User user = userRepo.findById(userId).orElse(null);
         System.out.println("hello update");
         if (user != null) {
             user.setUsername(userUpdateRequest.getUsername());
@@ -137,8 +137,8 @@ public class UserAuthServiceimpl implements UserAuthService {
     }
 
     @Override
-    public void removeUser(Long user_id) {
-        userRepo.deleteById(user_id);
+    public void removeUser(Long userId) {
+        userRepo.deleteById(userId);
 
     }
 

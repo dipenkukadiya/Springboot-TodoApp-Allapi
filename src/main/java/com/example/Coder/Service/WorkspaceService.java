@@ -14,12 +14,12 @@ public interface WorkspaceService {
 
        void addWorkspace(WorkspaceRequest workspaceRequest);
 
-       WorkspaceDTO getWorkspace(Long workspace_id);
+       WorkspaceDTO getWorkspace(Long workspaceId);
 
-       void updateWorkspace(WorkspaceRequest workspaceRequest, Long workspace_id);
+       void updateWorkspace(WorkspaceRequest workspaceRequest, Long workspaceId);
 
-       void removeWorkspace(Long workspace_id);
+       void removeWorkspace(Long workspaceId);
 
-       void toggleIsprivacy(Long workspace_id);
+       void toggleIsprivacy(Long workspaceId);
 
 }

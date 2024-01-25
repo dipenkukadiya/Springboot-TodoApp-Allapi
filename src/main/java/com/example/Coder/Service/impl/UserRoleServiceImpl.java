@@ -35,8 +35,8 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public UserRole getUserRoleById(Long userRole_id) {
-        UserRole userRole = userRoleRepo.findById(userRole_id).orElse(null);
+    public UserRole getUserRoleById(Long userRoleId) {
+        UserRole userRole = userRoleRepo.findById(userRoleId).orElse(null);
         if (userRole != null) {
             return userRole;
         }
@@ -44,9 +44,9 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void updateUserRole(UserRoleRequest userRoleRequest, Long userRole_id) {
+    public void updateUserRole(UserRoleRequest userRoleRequest, Long userRoleId) {
 
-        UserRole userRole = userRoleRepo.findById(userRole_id).orElse(null);
+        UserRole userRole = userRoleRepo.findById(userRoleId).orElse(null);
         if (userRole != null) {
             userRole.setRoleName(userRoleRequest.getRoleName());
             userRole.setRoleKey(userRoleRequest.getRoleKey());
@@ -56,8 +56,8 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void removeUserRole(Long userRole_id) {
+    public void removeUserRole(Long userRoleId) {
 
-        userRoleRepo.deleteById(userRole_id);
+        userRoleRepo.deleteById(userRoleId);
     }
 }

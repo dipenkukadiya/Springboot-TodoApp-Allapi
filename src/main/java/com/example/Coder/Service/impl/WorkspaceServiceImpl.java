@@ -43,8 +43,8 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
-    public void updateWorkspace(WorkspaceRequest workspaceRequest, Long workspace_id) {
-        Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
+    public void updateWorkspace(WorkspaceRequest workspaceRequest, Long workspaceId) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
         if (workspace != null) {
             workspace.setTitle(workspaceRequest.getTitle());
             workspace.setDescription(workspaceRequest.getDescription());
@@ -54,13 +54,13 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
-    public void removeWorkspace(Long workspace_id) {
-        workspaceRepo.deleteById(workspace_id);
+    public void removeWorkspace(Long workspaceId) {
+        workspaceRepo.deleteById(workspaceId);
     }
 
     @Override
-    public void toggleIsprivacy(Long workspace_id) {
-        Workspace workspace = workspaceRepo.findById(workspace_id).orElse(null);
+    public void toggleIsprivacy(Long workspaceId) {
+        Workspace workspace = workspaceRepo.findById(workspaceId).orElse(null);
         if (workspace != null) {
             workspace.setIsPrivate(!workspace.getIsPrivate());
             workspaceRepo.save(workspace);

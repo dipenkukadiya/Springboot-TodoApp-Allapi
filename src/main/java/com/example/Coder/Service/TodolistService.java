@@ -8,17 +8,17 @@ import com.example.Coder.DTO.TodolistDTO;
 import com.example.Coder.Request.TodolistRequest;
 
 public interface TodolistService {
-    List<TodolistDTO> getAllTodolistByWIdndBId(Long workspace_id,Long board_id);
+    List<TodolistDTO> getAllTodolistByWIdndBId(Long workspaceId,Long boardId);
 
-    TodolistDTO getTodolistByid(Long workspace_id, Long board_id,Long todolist_id);
+    TodolistDTO getTodolistByid(Long workspaceId, Long boardId,Long todolistId);
 
-    void addTodolist(Long workspace_id,Long board_id, TodolistRequest todolistRequest);
+    void addTodolist(Long workspaceId,Long boardId, TodolistRequest todolistRequest);
 
-    void updateTodolist(Long workspace_id, Long board_id,Long todolist_id, TodolistRequest todolistRequest);
+    void updateTodolist(Long workspaceId, Long boardId,Long todolistId, TodolistRequest todolistRequest);
 
-    void removeTodolist(Long workspace_id, Long board_id ,Long todolist_id);
+    void removeTodolist(Long workspaceId, Long boardId ,Long todolistId);
 
-    void toggleTodolistIsArchive(Long workspace_id, Long board_id ,Long todolist_id);
+    void toggleTodolistIsArchive(Long workspaceId, Long boardId ,Long todolistId);
 
     
     

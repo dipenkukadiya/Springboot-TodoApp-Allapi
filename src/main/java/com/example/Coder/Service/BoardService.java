@@ -8,16 +8,16 @@ import com.example.Coder.Request.BoardRequest;
 public interface BoardService {
     List<BoardDTO> getAllBoards();
 
-    List<BoardDTO> getAllBoardByWorkspaceId(Long workspace_id);
+    List<BoardDTO> getAllBoardByWorkspaceId(Long workspaceId);
 
-    BoardDTO getBoardByWorkspaceid(Long workspace_id, Long board_id);
+    BoardDTO getBoardByWorkspaceid(Long workspaceId, Long boardId);
 
-    void addBoard(Long workspace_id, BoardRequest boardRequest);
+    void addBoard(Long workspaceId, BoardRequest boardRequest);
 
-    void updateBoard(Long workspace_id, Long board_id, BoardRequest boardRequest);
+    void updateBoard(Long workspaceId, Long boardId, BoardRequest boardRequest);
 
-    void removeBoard(Long workspace_id, Long board_id);
+    void removeBoard(Long workspaceId, Long boardId);
 
-    void toggleBoardIsFavorite(Long workspace_id, Long board_id);
+    void toggleBoardIsFavorite(Long workspaceId, Long boardId);
 
 }

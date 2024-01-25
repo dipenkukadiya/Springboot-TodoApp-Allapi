@@ -10,9 +10,9 @@ public interface UserRoleService {
 
     List<UserRole> getAllUserRoles();
 
-    UserRole getUserRoleById(Long userRole_id);
+    UserRole getUserRoleById(Long userRoleId);
 
-    void updateUserRole(UserRoleRequest userRoleRequest, Long userRole_id);
+    void updateUserRole(UserRoleRequest userRoleRequest, Long userRoleId);
 
-    void removeUserRole(Long userRole_id);
+    void removeUserRole(Long userRoleId);
 }
