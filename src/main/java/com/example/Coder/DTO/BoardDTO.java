@@ -3,6 +3,7 @@ package com.example.Coder.DTO;
 
 public class BoardDTO {
     private Long id;
+    private Long workspaceId;
     private String title;
     private String description;
     private boolean isFavorite;
@@ -11,8 +12,9 @@ public class BoardDTO {
     public BoardDTO() {
     }
 
-    public BoardDTO(Long id, String title, String description, boolean isFavorite) {
+    public BoardDTO(Long id, Long workspaceId,String title, String description, boolean isFavorite) {
         this.id = id;
+        this.workspaceId= workspaceId;
         this.title = title;
         this.description = description;
         this.isFavorite = isFavorite;
@@ -49,6 +51,14 @@ public class BoardDTO {
 
     public void setIsFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
+    }
+
+    public Long getWorkspaceId() {
+        return workspaceId;
+    }
+
+    public void setWorkspaceId(Long workspaceId) {
+        this.workspaceId = workspaceId;
     }
 
   

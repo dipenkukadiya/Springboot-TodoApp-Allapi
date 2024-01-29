@@ -25,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardDTO> getAllBoards() {
         List<Board> boards = boardRepo.findAll();
+
         return boards.stream()
                 .map(this::convertBoardToDTO).collect(Collectors.toList());
     }
@@ -103,10 +104,13 @@ public class BoardServiceImpl implements BoardService {
 
     private BoardDTO convertBoardToDTO(Board board) {
         BoardDTO boardDTO = new BoardDTO();
+        // Board board = boardRepo.find
+
         boardDTO.setId(board.getId());
         boardDTO.setTitle(board.getTitle());
         boardDTO.setDescription(board.getDescription());
         boardDTO.setIsFavorite(board.getIsFavorite());
+        boardDTO.setWorkspaceId(board.getWorkspace().getId());
 
         return boardDTO;
     }

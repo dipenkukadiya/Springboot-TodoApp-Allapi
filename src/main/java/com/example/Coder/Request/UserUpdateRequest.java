@@ -4,19 +4,16 @@ public class UserUpdateRequest {
     private String Username;
     private String email;
     private String password;
-    private String Role;
-    private String Descreption;
-
+    
     
     public UserUpdateRequest() {
     }
     
-    public UserUpdateRequest(String username, String email, String password, String role, String descreption) {
+    public UserUpdateRequest(String username, String email, String password) {
         Username = username;
         this.email = email;
         this.password = password;
-        Role = role;
-        Descreption = descreption;
+
     }
 
     public String getUsername() {
@@ -37,19 +34,5 @@ public class UserUpdateRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getRole() {
-        return Role;
-    }
-    public void setRole(String role) {
-        Role = role;
-    }
-
-    public String getDescreption() {
-        return Descreption;
-    }
-
-    public void setDescreption(String descreption) {
-        Descreption = descreption;
-    }
-
+   
 }

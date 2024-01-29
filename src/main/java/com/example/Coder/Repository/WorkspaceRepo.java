@@ -6,4 +6,5 @@ import com.example.Coder.Entity.Workspace;
 
 public interface WorkspaceRepo extends JpaRepository<Workspace, Long> {
 
+
 }

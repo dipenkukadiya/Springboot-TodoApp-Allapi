@@ -30,7 +30,7 @@ public class UserRoleController {
         return new ResponseEntity<>(userRoles, HttpStatus.OK);
     }
 
-    @GetMapping("/{userRole_id}")
+    @GetMapping("/{userRoleId}")
     public ResponseEntity<UserRole> getUserRoleById(@PathVariable Long userRoleId) {
         UserRole userRole = userRoleService.getUserRoleById(userRoleId);
         if (userRole != null) {

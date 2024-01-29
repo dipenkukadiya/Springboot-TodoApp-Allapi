@@ -58,13 +58,13 @@ public class UserAuthController {
         return userAuthService.getUsers();
     }
 
-    @GetMapping("/user/{user_id}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
         UserDTO userDTO = userAuthService.getUserById(userId);
         return ResponseEntity.ok(userDTO);
     }
 
-    @PutMapping("/user/{user_id}")
+    @PutMapping("/user/{userId}")
     public ResponseEntity<Void> updateUser(@RequestBody UserUpdateRequest userUpdateRequest,
             @PathVariable Long userId) {
         System.out.println("hello update controller");
@@ -73,7 +73,7 @@ public class UserAuthController {
 
     }
 
-    @DeleteMapping("user/{user_id}")
+    @DeleteMapping("user/{userId}")
     public ResponseEntity<Void> DeleteUser(@PathVariable Long userId) {
         userAuthService.removeUser(userId);
         return ResponseEntity.ok().build();
