@@ -100,6 +100,7 @@ public class TodolistServiceImpl implements TodolistService {
         todolistDTO.setTodolistKey(todolist.getTodolistKey());
         todolistDTO.setTodolistIndex(todolist.getTodolistIndex());
         todolistDTO.setIsArchive(todolist.getIsArchive());
+        todolistDTO.setBoardId(todolist.getBoard().getId());
 
         return todolistDTO;
     }

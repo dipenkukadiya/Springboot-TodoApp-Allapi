@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class TodoDTO {
     private Long id;
+    private long todolistId;
     private String name;
     private String description;
     private String todoKey;
@@ -15,9 +16,10 @@ public class TodoDTO {
     public TodoDTO() {
     }
 
-    public TodoDTO(Long id, String name, String description, String todoKey, Boolean isArchived,
+    public TodoDTO(Long id,Long todolistId, String name, String description, String todoKey, Boolean isArchived,
             LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
+        this.todolistId=todolistId;
         this.name = name;
         this.description = description;
         this.todoKey = todoKey;
@@ -81,6 +83,14 @@ public class TodoDTO {
 
     public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    public long getTodolistId() {
+        return todolistId;
+    }
+
+    public void setTodolistId(long todolistId) {
+        this.todolistId = todolistId;
     }
 
 }

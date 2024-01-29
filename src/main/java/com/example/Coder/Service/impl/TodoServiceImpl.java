@@ -119,6 +119,7 @@ public class TodoServiceImpl implements TodoService {
         todoDTO.setDescription(todo.getDescription());
         todoDTO.setTodoKey(todo.getTodoKey());
         todoDTO.setIsArchived(todo.getIsArchived());
+        todoDTO.setTodolistId(todo.getTodolist().getId());
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         todoDTO.setCreatedDate(currentDateTime);

@@ -3,6 +3,7 @@ package com.example.Coder.DTO;
 public class TodolistDTO {
     
     private Long id;
+    private Long boardId;
     private String name;
     private String todolistKey;
     private Long todolistIndex;
@@ -10,8 +11,9 @@ public class TodolistDTO {
     public TodolistDTO() {
     }
     
-    public TodolistDTO(Long id, String name, String todolistKey, Long todolistIndex, boolean isArchive) {
+    public TodolistDTO(Long id,Long boardId, String name, String todolistKey, Long todolistIndex, boolean isArchive) {
         this.id = id;
+        this.boardId=boardId;
         this.name = name;
         this.todolistKey = todolistKey;
         this.todolistIndex = todolistIndex;
@@ -56,6 +58,14 @@ public class TodolistDTO {
 
     public void setIsArchive(boolean isArchive) {
         this.isArchive = isArchive;
+    }
+
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
     }
 
    
