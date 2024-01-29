@@ -1,6 +1,5 @@
 package com.example.Coder.Entity;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +30,7 @@ public class User {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     // @NotBlank(message = "Username must not be blank")
     @Column(name = "user_name")
     private String Username;
@@ -54,15 +53,17 @@ public class User {
     @LastModifiedDate
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
-    
-     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private List<Todo> createdTodos = new ArrayList<>();
 
     @ManyToMany(mappedBy = "assignees")
     private Set<Todo> assignedTodos = new HashSet<>();
-    
+
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    private List<Workspace> managedWorkspaces = new ArrayList<>();
 
 }
