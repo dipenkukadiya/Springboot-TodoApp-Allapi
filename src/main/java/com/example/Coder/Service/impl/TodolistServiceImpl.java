@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,20 +51,42 @@ public class TodolistServiceImpl implements TodolistService {
 
     @Override
     public void updateTodolist(Long workspaceId, Long boardId, Long todolistId, TodolistRequest todolistRequest) {
-
+    
         Board board = boardRepo.findById(boardId).orElse(null);
         if (board != null) {
             Todolist todolist = todolistRepo.findByIdAndBoardId(todolistId, boardId);
             if (todolist != null) {
+                Long newTodolistIndex = todolistRequest.getTodolistIndex();
+                Long originalTodolistIndex = todolist.getTodolistIndex();
+                
                 todolist.setName(todolistRequest.getName());
-                todolist.setTodolistIndex(todolistRequest.getTodolistIndex());
                 todolist.setTodolistKey(todolistRequest.getTodolistKey());
+                todolist.setTodolistIndex(newTodolistIndex);
                 todolist.setIsArchive(todolistRequest.getIsArchive());
                 todolist.setBoard(board);
+                update(newTodolistIndex, originalTodolistIndex, boardId);
                 todolistRepo.save(todolist);
+    
             }
         }
     }
+
+    public void update(Long newTodolistIndex,Long originalTodolistIndex,Long boardId){
+        if (!newTodolistIndex.equals(originalTodolistIndex)) {
+            // Find the Todolist to swap with
+            Optional<Todolist> otherTodolistOptional = todolistRepo.findByTodolistIndexAndBoardId(newTodolistIndex, boardId);
+            if (otherTodolistOptional.isPresent()) {
+                Todolist otherTodolist = otherTodolistOptional.get();
+                // Swap todolist indices
+                otherTodolist.setTodolistIndex(originalTodolistIndex);
+                todolistRepo.save(otherTodolist);
+            } 
+        }
+
+
+
+    }
+    
 
     @Override
     public void removeTodolist(Long workspaceId, Long boardId, Long todolistId) {

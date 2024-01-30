@@ -63,7 +63,7 @@ public class User {
     @ManyToMany(mappedBy = "assignees")
     private Set<Todo> assignedTodos = new HashSet<>();
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Workspace> managedWorkspaces = new ArrayList<>();
 
 }

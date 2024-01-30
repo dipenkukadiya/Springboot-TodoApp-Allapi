@@ -17,4 +17,6 @@ public interface TodolistRepo extends JpaRepository<Todolist,Long>{
     void deleteByIdAndBoardId(Long cardId, Long boardId);
 
     Optional<Todo> findByIdAndBoard_IdAndBoard_Workspace_Id(Long todolistId, Long boardId, Long workspaceId);
+    Optional<Todolist> findByTodolistIndexAndBoardId(Long todolistIndex, Long boardId);
+
 }
