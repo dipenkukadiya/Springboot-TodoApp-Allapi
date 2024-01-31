@@ -36,6 +36,6 @@ public class Board{
     private Workspace workspace;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Todolist> cards = new ArrayList<>();
+    private List<Todolist> todolists = new ArrayList<>();
 
 }

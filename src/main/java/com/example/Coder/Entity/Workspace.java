@@ -34,6 +34,7 @@ public class Workspace {
 
     @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Board> boards = new ArrayList<>();
+    
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
