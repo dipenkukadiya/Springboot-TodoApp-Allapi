@@ -55,7 +55,7 @@ public class TodolistController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{workspaceId}/boards/{boardId}/todolists/{todolistId}/toggleArchive")
+    @PatchMapping("/{workspaceId}/boards/{boardId}/todolists/{todolistId}/archive")
     public ResponseEntity<Void> toggleTodolistIsArchive(@PathVariable Long workspaceId, @PathVariable Long boardId,
             @PathVariable Long todolistId) {
         todolistService.toggleTodolistIsArchive(workspaceId, boardId, todolistId);

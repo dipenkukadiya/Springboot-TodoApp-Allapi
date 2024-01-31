@@ -57,7 +57,7 @@ public class WorkspaceController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{workspaceId}/togglePrivacy")
+    @PatchMapping("/{workspaceId}/private")
     public ResponseEntity<Void> togglePrivacy(@PathVariable Long workspaceId) {
         workspaceService.toggleIsprivacy(workspaceId);
         return ResponseEntity.ok().build();

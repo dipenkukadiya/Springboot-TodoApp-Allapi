@@ -21,7 +21,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     public void addUserRole(UserRoleRequest userRoleRequest) {
         UserRole userRole = new UserRole();
         userRole.setRoleName(userRoleRequest.getRoleName());
-        userRole.setRoleKey(userRoleRequest.getRoleKey());
+        
         userRole.setDescription(userRoleRequest.getDescription());
 
         userRoleRepo.save(userRole);
@@ -49,7 +49,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         UserRole userRole = userRoleRepo.findById(userRoleId).orElse(null);
         if (userRole != null) {
             userRole.setRoleName(userRoleRequest.getRoleName());
-            userRole.setRoleKey(userRoleRequest.getRoleKey());
+     
             userRole.setDescription(userRoleRequest.getDescription());
             userRoleRepo.save(userRole);
         }

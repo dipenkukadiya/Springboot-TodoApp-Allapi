@@ -56,7 +56,7 @@ public class BoardController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{workspaceId}/boards/{boardId}/toggleFavorite")
+    @PatchMapping("/{workspaceId}/boards/{boardId}/favorite")
     public ResponseEntity<Void> toggleBoardIsFavorite(@PathVariable Long workspaceId, @PathVariable Long boardId) {
         boardService.toggleBoardIsFavorite(workspaceId, boardId);
         return ResponseEntity.ok().build();
