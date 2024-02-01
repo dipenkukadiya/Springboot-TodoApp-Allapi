@@ -6,22 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-
-@Entity
 @Data
-public class UserRole {
+@Entity
+public class Role {
     @Id
-    @Column(name = "userrole_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "userrole_name")
+
+    @Column(name = "role_name", unique = true)
     private String roleName;
-
     
-    
-    @Column(name = "userrole_description")
-    private String Description;
-
-
 }

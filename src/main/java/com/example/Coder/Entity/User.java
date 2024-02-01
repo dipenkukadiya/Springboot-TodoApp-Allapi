@@ -15,6 +15,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 // import jakarta.validation.constraints.Email;
@@ -33,7 +35,7 @@ public class User {
 
     // @NotBlank(message = "Username must not be blank")
     @Column(name = "user_name")
-    private String Username;
+    private String username;
 
     // @Email(message = "Invalid email format")
     @Column(name = "email")
@@ -44,7 +46,7 @@ public class User {
     private String password;
 
     @Column(name = "role_name")
-    private String Role;
+    private String role;
 
     @CreatedDate
     @Column(name = "created_date")
@@ -60,10 +62,19 @@ public class User {
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private List<Todo> createdTodos = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "assignees")
+    @ManyToMany(mappedBy = "assignees",cascade = CascadeType.ALL)
     private Set<Todo> assignedTodos = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Workspace> managedWorkspaces = new ArrayList<>();
+
+     @ManyToMany
+    @JoinTable(
+        name = "user_manage_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
+
 
 }
