@@ -2,17 +2,20 @@ package com.example.Coder.Service.impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import java.util.List;
 
-// import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.Coder.Auhtentication.JwtUtil;
 import com.example.Coder.DTO.UserDTO;
+
 import com.example.Coder.Entity.User;
 import com.example.Coder.Entity.UserRole;
+import com.example.Coder.Repository.RoleRepo;
 import com.example.Coder.Repository.UserRepo;
 import com.example.Coder.Repository.UserRoleRepo;
 import com.example.Coder.Request.UserLoginRequest;
@@ -29,6 +32,10 @@ public class UserAuthServiceimpl implements UserAuthService {
     JwtUtil jwtUtil;
     @Autowired
     UserRoleRepo userRoleRepo;
+    @Autowired
+    PasswordEncoder passwordEncoder;
+    @Autowired
+    RoleRepo roleRepo;
 
     @Override
     public void addUser(UserRegisterRequest userRegisterRequest) {
@@ -36,9 +43,9 @@ public class UserAuthServiceimpl implements UserAuthService {
 
         user.setUsername(userRegisterRequest.getUsername());
         user.setEmail(userRegisterRequest.getEmail());
-        user.setPassword(userRegisterRequest.getPassword());
+        user.setPassword(passwordEncoder.encode(userRegisterRequest.getPassword()));
         user.setRole(userRegisterRequest.getRole());
-        LocalDateTime currentDateTime = LocalDateTime.now();
+     LocalDateTime currentDateTime = LocalDateTime.now();
         user.setCreatedDate(currentDateTime);
         user.setUpdatedDate(currentDateTime);
 
@@ -125,7 +132,7 @@ public class UserAuthServiceimpl implements UserAuthService {
         System.out.println("hello update");
         if (user != null) {
             user.setUsername(userUpdateRequest.getUsername());
-            user.setPassword(userUpdateRequest.getPassword());
+            user.setPassword(passwordEncoder.encode(userUpdateRequest.getPassword()));
             user.setEmail(userUpdateRequest.getEmail());
            
       
